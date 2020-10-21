@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "ProjeyiIncele";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+
+            <!-- Title -->
+            <h1 class="mt-4">@ViewBag.baslik</h1>
+                        <!-- Author -->
+        <p class="lead">
+            <a href="@Url.Action("KullaniciProfili", "Fikirler" , new { kullaniciId = ViewBag.yukleyenId} )" class="elements">
+                <span>@ViewBag.yukleyen</span>
+            </a>
+        </p>  
+            <hr>
+
+            <!-- Date/Time -->
+            <p>18.10.2020 tarihinde bitirildi.</p>
+
+            <hr>
+
+            <!-- Preview Image -->
+            <img class="img-fluid rounded" style="height:450px;" src="@ViewBag.resim" alt="">
+
+            <hr>
+
+            <!-- Post Content -->
+            <p class="lead">@ViewBag.aciklama</p>
+
+
+            <hr>
+
+            <hr />
+
+            <button class="btn btn-danger">Github</button>
+            <hr />
+        </div>
+
+
+
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->

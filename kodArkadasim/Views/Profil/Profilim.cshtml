@@ -1,0 +1,153 @@
+﻿@model IEnumerable<kodArkadasim.Models.EntityFramework.Uyeler>
+
+@{
+    ViewBag.Title = "Profilim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="padding-top:50px; background-color:white; height:800px;" class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <a class="btn btn-danger btn-block">Profilim</a>
+            <ul class="nav nav-pills nav-stacked nav-email shadow mb-20">
+
+                <li>
+                    <a href="#mail-compose.html"> @Html.ActionLink("Mesajlarım", "MesajKutusu", "Profil")</a>
+                </li>
+                
+                <li>
+                  
+                        @Html.ActionLink("Fikirlerim", "Fikirlerim", "Profil")  
+                    
+                </li>
+                <li> @Html.ActionLink("Projelerim", "Projelerim", "Profil")</li>
+
+            </ul><!-- /.nav -->
+
+
+        </div>
+        <div class="col-sm-9">
+
+            <!-- resumt -->
+            <div class="panel panel-default">
+                <div class="panel-heading resume-heading">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-xs-12 col-sm-4">
+                                
+                                    <img class="img-circle img-responsive" alt="" src="@ViewBag.avatar">
+                                    <button type="button"  data-toggle="modal" data-target="#ModalResim">Yeni Resim</button>
+                                
+                                <div class="row">
+                                    
+
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-8">
+                                <ul class="list-group">
+                                    <li class="list-group-item">@Html.Label(HttpContext.Current.User.Identity.Name)</li>
+                                    <li class="list-group-item"><i class="fa fa-envelope"></i>@ViewBag.gmail</li>
+                                    <li class="list-group-item">@ViewBag.IsimSoyisim </li>
+                                    <li class="list-group-item">@ViewBag.Meslek </li>
+
+
+
+                                </ul>
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalKisisel">Düzenle</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bs-callout bs-callout-danger">
+                    <h4>Hakkımda   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalHakkimda">Güncelle</button></h4>
+                    <p>@ViewBag.hakkimda</p>
+                    <p></p>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+        <!-- resume -->
+
+    </div>
+</div>
+
+<div class="modal" id="ModalHakkimda">
+
+    <div class="modal-dialog" id="ModalHakkimda">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Hakkımda</h2>
+            </div>
+            
+            @using (Html.BeginForm("Hakkimda", "Profil", FormMethod.Post)) {
+                <div class="modal-body">
+
+                    <label>Hakkımda </label>
+                    <textarea name="Hakkimda" id="Hakkimda" class="form-control" required></textarea>
+                    <br />
+                    <br />
+                    <button type="submit" class="btn btn-success">Kaydet</button>
+                </div>
+            }
+           
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="ModalResim">
+
+    <div class="modal-dialog" id="ModalHakkimda">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Yeni Resim</h2>
+            </div>
+
+            @using (Html.BeginForm("YeniResim", "Profil", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="modal-body">
+
+                    <label>Resim Seç*</label>
+                    <input type="file" class="form-control" name="Avatar" required/>
+                    <br />
+                    <br />
+                    <button type="submit" class="btn btn-success">Kaydet</button>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="ModalKisisel">
+
+    <div class="modal-dialog" id="ModalHakkimda">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Güncelle</h2>
+            </div>
+
+            @using (Html.BeginForm("Kisisel", "Profil", FormMethod.Post))
+            {
+        <div class="modal-body">
+
+            <label>İsim Soyisim</label>35
+            <input type="text" class="form-control" name="IsimSoyisim" />
+            <label>Meslek</label>
+            <input type="text" class="form-control" name="Meslek" />
+            <br />
+            <br />
+            <button type="submit" class="btn btn-success">Kaydet</button>
+        </div>
+            }
+
+
+        </div>
+    </div>
+</div>

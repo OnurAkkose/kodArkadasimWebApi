@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - AnaSayfa</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/fikir.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="~/Content/blog-post.css" rel="stylesheet" />
+    <link href="~/Content/Message.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+   
+    
+    
+    
+</head>
+
+<body style="background-color:#FCEEB5;">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+
+                @Html.ActionLink("Kod Arkadaşım", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Fikir Paylaşımları", "Index", "Fikirler")</li>
+                    <li>@Html.ActionLink("Projeler", "Projeler", "Projeler")</li>
+
+
+
+                </ul>
+                <ul class="nav navbar-nav" style="float:right;">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Çıkış Yap", "LogOut", "Security")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Giriş Yap", "Login", "Security")</li>
+                    }
+
+                    <li>@Html.ActionLink("Hoşgeldin " + HttpContext.Current.User.Identity.Name, "Profilim", "Profil")</li>
+                </ul>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+

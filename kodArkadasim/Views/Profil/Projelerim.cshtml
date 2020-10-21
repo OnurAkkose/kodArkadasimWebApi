@@ -1,0 +1,85 @@
+﻿@model List<kodArkadasim.Models.EntityFramework.Projeler>
+@{
+    ViewBag.Title = "Projelerim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalProje">Yeni</button>
+    <table class="table table-bordered" id="tableProjeler">
+        <thead style="background-color:coral;">
+            <tr>
+                <th style="text-align:center;">Tamamlanmış Projeler</th>
+                <th style="text-align:center;">İşlem</th>
+                <th style="text-align:center;">Tarih</th>
+
+            </tr>
+
+
+
+
+
+
+        </thead>
+        <tbody style="background-color: burlywood;">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Baslik  
+
+                       
+
+                        <br />
+
+
+                    </td>
+                    <td style="text-align:center;">
+                       
+                        @Html.ActionLink("İncele", "ProjeyiIncele", "Projeler", new { id = item.Id }, new { @class = "badge badge-primary" })
+                        &nbsp;
+                        @Html.ActionLink("Sil", "ProjeyiSil", "Profil", new { id = item.Id }, new { @class = "badge badge-danger" })
+                       
+                        
+                    </td>
+
+                    <td>@item.Tarih</td>
+                </tr>
+
+            }
+
+            
+        </tbody>
+
+    </table>
+
+
+</body>
+
+<div class="modal" id="ModalProje">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Yeni Proje</h2>
+            </div>
+            <form action="/Projeler/YeniProje" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+
+                    <label>Baslik</label>
+                    <textarea name="Baslik" id="Baslik" class="form-control" required></textarea>
+                    <label>Aciklama</label>
+                    <textarea name="Aciklama" id="Aciklama" class="form-control" required></textarea>
+                    <label>Resim</label>
+                    <input type="file" name="Resim" class="form-control" />
+                    <br />
+                    <br />
+                    <button type="submit" class="btn btn-success">Kaydet</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+   

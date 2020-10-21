@@ -1,0 +1,52 @@
+﻿@model List<kodArkadasim.Models.EntityFramework.Fikirler>
+@{
+    ViewBag.Title = "Fikirlerim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalHakkimda">Yeni</button>
+    <table class="table table-bordered" id="tableProjeler">
+        <thead style="background-color:coral;">
+            <tr>
+                <th style="text-align:center;">Fikirler</th>
+                <th style="text-align:center;">İşlemler</th>
+                
+                <th style="text-align:center;">Tarih</th>
+            </tr>
+
+
+
+
+
+
+        </thead>
+        <tbody style="background-color: burlywood;">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Baslik <br />
+
+
+                    </td>
+                    <td style="text-align:center;">
+                        @Html.ActionLink("Sil", "FikriSil", "Profil", new { id = item.Id }, new { @class = "btn btn-danger" })
+                        &nbsp;
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ModalFikirGuncelle">Güncelle</button>
+                    </td>
+                   
+                    <td>@item.Tarih</td>
+                </tr>
+
+
+
+            }
+        </tbody>
+
+    </table>
+
+
+</body>
+
+

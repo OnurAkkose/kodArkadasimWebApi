@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="kodArkadasimDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Fikirler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UyeId" Type="tinyint" />
+    <Property Name="Baslik" Type="varchar" MaxLength="150" />
+    <Property Name="Aciklama" Type="varchar" MaxLength="2000" />
+    <Property Name="Resim" Type="varchar" MaxLength="100" />
+    <Property Name="Tarih" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="Mesajlar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GonderenKullanici" Type="varchar" MaxLength="75" />
+    <Property Name="AlanKullanici" Type="varchar" MaxLength="75" />
+    <Property Name="Aciklama" Type="varchar" MaxLength="500" />
+    <Property Name="Baslik" Type="varchar" MaxLength="50" />
+    <Property Name="GonderenAvatar" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Projeler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UyeId" Type="tinyint" />
+    <Property Name="Baslik" Type="varchar" MaxLength="500" />
+    <Property Name="Aciklama" Type="varchar" MaxLength="7500" />
+    <Property Name="Resim" Type="varchar" MaxLength="100" />
+    <Property Name="Tarih" Type="varchar" MaxLength="50" />
+    <Property Name="UyeName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Uyeler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="varchar" MaxLength="50" />
+    <Property Name="Sifre" Type="varchar" MaxLength="50" />
+    <Property Name="Gmail" Type="varchar" MaxLength="75" />
+    <Property Name="Tarih" Type="smalldatetime" />
+    <Property Name="Cinsiyet" Type="bit" />
+    <Property Name="Rank" Type="varchar" MaxLength="10" />
+    <Property Name="Durum" Type="bit" />
+    <Property Name="Seviye" Type="varchar" MaxLength="10" />
+    <Property Name="Hakkimda" Type="varchar" MaxLength="55" />
+    <Property Name="ProjeSayisi" Type="tinyint" />
+    <Property Name="Avatar" Type="varchar" MaxLength="50" />
+    <Property Name="FikirSayisi" Type="tinyint" />
+    <Property Name="IsimSoyisim" Type="varchar" MaxLength="75" />
+    <Property Name="Meslek" Type="varchar" MaxLength="75" />
+  </EntityType>
+  <Association Name="FK_Fikirler_Uyeler1">
+    <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="0..1" />
+    <End Role="Fikirler" Type="Self.Fikirler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uyeler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Fikirler">
+        <PropertyRef Name="UyeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Projeler_Uyeler1">
+    <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="0..1" />
+    <End Role="Projeler" Type="Self.Projeler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uyeler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Projeler">
+        <PropertyRef Name="UyeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="kodArkadasimDbModelStoreContainer">
+    <EntitySet Name="Fikirler" EntityType="Self.Fikirler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mesajlar" EntityType="Self.Mesajlar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Projeler" EntityType="Self.Projeler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uyeler" EntityType="Self.Uyeler" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Fikirler_Uyeler1" Association="Self.FK_Fikirler_Uyeler1">
+      <End Role="Uyeler" EntitySet="Uyeler" />
+      <End Role="Fikirler" EntitySet="Fikirler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Projeler_Uyeler1" Association="Self.FK_Projeler_Uyeler1">
+      <End Role="Uyeler" EntitySet="Uyeler" />
+      <End Role="Projeler" EntitySet="Projeler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

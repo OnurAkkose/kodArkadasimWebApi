@@ -1,0 +1,52 @@
+﻿@model IEnumerable<kodArkadasim.Models.EntityFramework.Mesajlar>
+@{
+    ViewBag.Title = "MesajKutusu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="//cdn.materialdesignicons.com/3.7.95/css/materialdesignicons.min.css">
+
+<div class="container" style="background-color: white; height:750px;">
+    <div class="content-wrapper">
+        <div class="email-wrapper wrapper">
+            <div class="row align-items-stretch">
+
+                <div class="mail-list-container col-md-3 pt-4 pb-4 border-right bg-white">
+                    <div class="border-bottom pb-4 mb-3 px-3">
+                        <div class="alert alert-danger" role="alert">
+                            <b>Mesaj Kutusu</b>
+                        </div>
+                    </div>
+                    <div class="mail-list">
+                        <div class="form-check"> <label class="form-check-label"> <input type="checkbox" class="form-check-input"> <i class="input-helper"></i></label></div>
+                        <div class="">
+                            @foreach (var mesajlar in Model)
+                            {
+                                <p class="">@mesajlar.GonderenKullanici</p>
+                                <p class="">@mesajlar.Baslik</p>
+                               @* <p> @Html.ActionLink("Göster", "MesajGoster", "Profil", new { mesajId = mesajlar.id }, new { @class = "btn btn-primary" })</p>*@
+                                 
+                        <p>
+                              @Ajax.ActionLink("Göster", "MesajGoster", "Profil", new { mesajId = mesajlar.id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "mesajim" },
+        new { @class = " btn btn-primary" })
+                        </p>
+                            }
+
+                        </div>
+                        <div class="details">
+                            <i class="mdi mdi-star-outline"></i>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div id="mesajim" style="width : 700px;">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,28 @@
+﻿@model kodArkadasim.Models.EntityFramework.Projeler
+@{
+    ViewBag.Title = "YeniProje";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>YeniProje</h2>
+
+@using (Html.BeginForm("YeniProje", "Projeler", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div >
+        <label>Başlık</label>
+        @Html.TextBoxFor(m => m.Baslik ,new { @class = "form-control"})
+    </div>
+    <div >
+        <label >Açıklama</label>
+        
+         @Html.TextAreaFor(m => m.Aciklama, new { @class = "form-control" , @cols = 20})
+
+        
+    </div>
+    <div >
+        <label >Görsel</label>
+        <input class="form-control" type="file" name="Resim"/>
+    </div>
+    <br /><br />
+    <button type="submit" class="btn btn-primary">Yükle</button>
+}

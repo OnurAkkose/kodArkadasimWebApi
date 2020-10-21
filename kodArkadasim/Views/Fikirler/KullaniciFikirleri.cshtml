@@ -1,0 +1,45 @@
+﻿@model List<kodArkadasim.Models.EntityFramework.Fikirler>
+@{
+    ViewBag.Title = "KullaniciFikirleri";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+   
+    <table class="table table-bordered" id="tableProjeler">
+        <thead style="background-color:coral;">
+            <tr>
+                <th style="text-align:center;">Fikirleri</th>
+
+                <th style="text-align:center;">Tarih</th>
+            </tr>
+
+
+
+
+
+
+        </thead>
+        <tbody style="background-color: burlywood;">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Baslik<br />
+
+
+                    </td>
+
+                    <td>@item.Tarih</td>
+                </tr>
+
+
+
+            }
+        </tbody>
+
+    </table>
+
+
+</body>
+

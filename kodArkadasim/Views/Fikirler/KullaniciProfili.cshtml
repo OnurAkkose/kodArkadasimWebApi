@@ -1,0 +1,126 @@
+﻿@model IEnumerable<kodArkadasim.Models.EntityFramework.Uyeler>
+@{
+    ViewBag.Title = "KullaniciProfili";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div style="padding-top:50px; height:800px; background-color:white;" class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <a class="btn btn-danger btn-block">Uye</a>
+            <ul class="nav nav-pills nav-stacked nav-email shadow mb-20">
+                
+                <li>
+                    <a href="#mail-compose.html" data-toggle="modal" data-target="#ModalMesaj">Mesaj Gönder</a>
+                </li>
+               
+                <li>
+                    @Html.ActionLink("Fikirleri", "KullaniciFikirleri", "Fikirler" , new { userName = ViewBag.isim }, null)
+                </li>
+                <li>@Html.ActionLink("Bitirdiği Projeler","KullaniciProjeleri", "Fikirler", new { userName = ViewBag.isim }, null)</li>
+            </ul><!-- /.nav -->
+
+
+        </div>
+        <div class="col-sm-9">
+
+            <!-- resumt -->
+            <div class="panel panel-default">
+                <div class="panel-heading resume-heading">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-xs-12 col-sm-4">
+                                <figure>
+                                    <img class="img-circle img-responsive" alt="" src="@ViewBag.Avatar">
+                                </figure>
+                                <div class="row">
+                                    <div class="col-xs-12 social-btns">
+                                        <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+                                            <a href="#" class="btn btn-social btn-block btn-facebook">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+                                            <a href="#" class="btn btn-social btn-block btn-twitter">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+                                            <a href="#" class="btn btn-social btn-block btn-linkedin">
+                                                <i class="fa fa-linkedin"></i>
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+                                            <a href="#" class="btn btn-social btn-block btn-github">
+                                                <i class="fa fa-github"></i>
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-3 col-md-1 col-lg-1 social-btn-holder">
+                                            <a href="#" class="btn btn-social btn-block btn-stackoverflow">
+                                                <i class="fa fa-stack-overflow"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-8">
+                                <ul class="list-group">
+                                    <li class="list-group-item">@ViewBag.isim</li>
+                                    <li class="list-group-item"><i class="fa fa-envelope"></i>@ViewBag.gmail</li>
+                                    <li class="list-group-item">@ViewBag.cinsiyet </li>
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bs-callout bs-callout-danger">
+                    <h4>Hakkında</h4>
+                    <p> @ViewBag.hakkimda</p>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+        <!-- resume -->
+
+    </div>
+</div>
+<div class="modal" id="ModalMesaj">
+
+    <div class="modal-dialog" id="ModalHakkimda">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Mesaj Gönder</h2>
+            </div>
+            <form action="/Profil/KullaniciyaMesajGonder" method="post">
+                <div class="modal-body">
+
+                    <label>Başlık* </label>
+                    <textarea name="Baslik" id="Baslik" class="form-control" required></textarea>
+
+                    <label>Mesaj* </label>
+                    <textarea name="Aciklama" id="Aciklama" class="form-control" required></textarea>
+                    <br />
+                    <br />
+                    
+                    <input type="hidden" name="Id" value="@ViewBag.isim" /> 
+                    
+                    <button type="submit" class="btn btn-success">Kaydet</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

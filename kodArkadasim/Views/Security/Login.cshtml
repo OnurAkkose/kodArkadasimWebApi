@@ -1,0 +1,49 @@
+﻿@model kodArkadasim.Models.EntityFramework.Uyeler
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Giriş</title>
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ 
+</head>
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <!-- Icon -->
+            <div class="">
+                <img style="width:100px; height:100px;" src="~/Content/image/user.png"id="icon" alt="User Icon" />
+            </div>
+
+            <!-- Login Form -->
+            @using (Html.BeginForm("Login", "Security", FormMethod.Post))
+            {
+                @Html.TextBoxFor(m => m.KullaniciAdi, new { @class = "fadeIn second", placeholder = "Kullanıcı Adı" })
+                @Html.TextBoxFor(m => m.Sifre, new { @class = "fadeIn third", placeholder = "Şifre" })
+                <input type="submit" class="fadeIn fourth" value="Giriş Yap">
+            }
+            @ViewBag.Mesaj
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <a class="underlineHover" href="#">Şifreni mi Unuttun?</a>
+
+            </div>
+            <div id="formFooter">
+                @Html.ActionLink("Kayıt Ol", "Register","Security")
+
+            </div>
+
+        </div>
+    </div>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+</html>
